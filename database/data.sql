@@ -13,6 +13,50 @@ CREATE TABLE student(
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE father(
+    RegNo INT,
+    FirstName VARCHAR(25) NOT NULL,
+    MiddleName VARCHAR(25),
+    LastName VARCHAR(25) NOT NULL,
+    Occupation VARCHAR(25) NOT NULL,
+    Address VARCHAR(100) NOT NULL,
+    Mobile VARCHAR(10) UNIQUE NOT NULL,
+    FOREIGN KEY (RegNo) REFERENCES student(RegNo)
+);
+
+CREATE TABLE mother(
+    RegNo INT,
+    FirstName VARCHAR(25) NOT NULL,
+    MiddleName VARCHAR(25),
+    LastName VARCHAR(25) NOT NULL,
+    Occupation VARCHAR(25) NOT NULL,
+    Address VARCHAR(100) NOT NULL,
+    Mobile VARCHAR(10) UNIQUE NOT NULL,
+    FOREIGN KEY (RegNo) REFERENCES student(RegNo)
+);
+
+CREATE TABLE guardian(
+    RegNo INT,
+    FirstName VARCHAR(25) NOT NULL,
+    MiddleName VARCHAR(25),
+    LastName VARCHAR(25) NOT NULL,
+    Occupation VARCHAR(25) NOT NULL,
+    Address VARCHAR(100) NOT NULL,
+    Mobile VARCHAR(10) UNIQUE NOT NULL,
+    FOREIGN KEY (RegNo) REFERENCES student(RegNo)
+);
+
+CREATE TABLE spouse(
+    RegNo INT,
+    FirstName VARCHAR(25) NOT NULL,
+    MiddleName VARCHAR(25),
+    LastName VARCHAR(25) NOT NULL,
+    Occupation VARCHAR(25) NOT NULL,
+    Address VARCHAR(100) NOT NULL,
+    Mobile VARCHAR(10) UNIQUE NOT NULL,
+    FOREIGN KEY (RegNo) REFERENCES student(RegNo)
+);
+
 INSERT INTO student(FirstName, MiddleName, LastName, Gender, PermanentAddress, TemporaryAddress, Mobile, Email, DOB) VALUES
 ('Frank', 'Lloyd', 'Wright', 'Male', 'Richland Center, Wisconsin, U.S.', 'Phoenix, Arizona, U.S.', '9887186791', 'frankwright67@gmail.com', '1867-06-08'),
 ('Mary','' ,'Borthwick', 'Female', 'Boone, Iowa, U.S.', 'Spring Green, Wisconsin, U.S.', '9881906186', 'maryborthwick69@gmail.com', '1869-06-19');
