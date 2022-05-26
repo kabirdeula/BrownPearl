@@ -19,3 +19,5 @@ Brown Pearl is an Student Management Software System which is similar to EMIS.
 ### Backend
 ![PHP](https://img.shields.io/badge/PHP-779AB5?style=for-the-badge&logo=php&logoColor=000&labelColor=777BB4)
 ![MySQL](https://img.shields.io/badge/MySQL-434AA1?style=for-the-badge&logo=mysql&logoColor=000&labelColor=4479A1)
+
+![Entity Relationship Diagram](./images/doc/ERDiagram.png)
