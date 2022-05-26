@@ -6,7 +6,7 @@
 
 ## About Brown Pearl
 
-Brown Pearl is an School Management Software System which is similar to EMIS.
+Brown Pearl is an Student Management Software System which is similar to EMIS.
 
 ## Technologies Used
 
