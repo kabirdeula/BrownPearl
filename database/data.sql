@@ -65,3 +65,7 @@ INSERT INTO student(FirstName, MiddleName, LastName, Gender, PermanentAddress, T
 INSERT INTO father VALUES
 (1, 'William', 'Cary', 'Wright', 'Musician', 'Massachusetts', '9881825190'),
 (2, 'Marcus', 'Smith', 'Borthwick', 'Engineer', 'Boone', '9880912518');
+
+INSERT INTO mother VALUES
+(1, 'Anna', 'Llyod', 'Jones', 'Teacher', 'Wisconsin', '9818391923'),
+(2, 'Almira', 'A.', 'Borthwick', 'Engineer', 'Boone', '9818391898');
