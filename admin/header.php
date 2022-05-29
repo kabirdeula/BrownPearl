@@ -2,6 +2,8 @@
 
 session_start();
 
+$activePage = basename($_SERVER["PHP_SELF"],".php");
+
 ?>
 
 <!-- Page Wrapper -->
@@ -22,7 +24,7 @@ session_start();
         <hr class="sidebar-divider my-0">
         
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item">
+        <li class="nav-item <?php echo ($activePage === 'index') ? 'active' : '';?>">
             <a class="nav-link" href="./index.php">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
@@ -101,8 +103,8 @@ session_start();
             <!-- </div> -->
         <!-- </li> -->
         
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
+        <!-- Nav Item - Students -->
+        <li class="nav-item <?php echo ($activePage === 'students') ? 'active' : '';?>">
             <a class="nav-link" href="./students.php">
                 <i class="fas fa-fw fa-graduation-cap"></i>
                 <span>Students</span></a>
