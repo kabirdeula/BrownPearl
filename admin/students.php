@@ -32,7 +32,11 @@ $sqlStudent = $pdo -> query("SELECT * FROM student");
     <div class="container-fluid">
         
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Students</h1>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-2 text-gray-800">Students</h1>
+            <a href="./addstudent.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-plus fa-sm text-white-50"></i> Add New Student</a>
+        </div>
 
         <!-- DataTables Start -->
         <div class="card shadow mb-4">
