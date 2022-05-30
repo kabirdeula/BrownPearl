@@ -11,51 +11,19 @@ CREATE TABLE student(
     Email VARCHAR(25) UNIQUE NOT NULL,
     DOB DATE NOT NULL,
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ProfilePhoto VARCHAR(50)
-);
-
-CREATE TABLE father(
-    RegNo INT,
-    FirstName VARCHAR(25) NOT NULL,
-    MiddleName VARCHAR(25),
-    LastName VARCHAR(25) NOT NULL,
-    Occupation VARCHAR(25) NOT NULL,
-    Address VARCHAR(100) NOT NULL,
-    Mobile VARCHAR(10) UNIQUE NOT NULL,
-    FOREIGN KEY (RegNo) REFERENCES student(RegNo)
-);
-
-CREATE TABLE mother(
-    RegNo INT,
-    FirstName VARCHAR(25) NOT NULL,
-    MiddleName VARCHAR(25),
-    LastName VARCHAR(25) NOT NULL,
-    Occupation VARCHAR(25) NOT NULL,
-    Address VARCHAR(100) NOT NULL,
-    Mobile VARCHAR(10) UNIQUE NOT NULL,
-    FOREIGN KEY (RegNo) REFERENCES student(RegNo)
-);
-
-CREATE TABLE guardian(
-    RegNo INT,
-    FirstName VARCHAR(25) NOT NULL,
-    MiddleName VARCHAR(25),
-    LastName VARCHAR(25) NOT NULL,
-    Occupation VARCHAR(25) NOT NULL,
-    Address VARCHAR(100) NOT NULL,
-    Mobile VARCHAR(10) UNIQUE NOT NULL,
-    FOREIGN KEY (RegNo) REFERENCES student(RegNo)
-);
-
-CREATE TABLE spouse(
-    RegNo INT,
-    FirstName VARCHAR(25) NOT NULL,
-    MiddleName VARCHAR(25),
-    LastName VARCHAR(25) NOT NULL,
-    Occupation VARCHAR(25) NOT NULL,
-    Address VARCHAR(100) NOT NULL,
-    Mobile VARCHAR(10) UNIQUE NOT NULL,
-    FOREIGN KEY (RegNo) REFERENCES student(RegNo)
+    ProfilePhoto VARCHAR(50),
+    FatherName VARCHAR(75) NOT NULL,
+    FatherOccupation VARCHAR(50) NOT NULL,
+    FatherMobile VARCHAR(10) UNIQUE NOT NULL,
+    MotherName VARCHAR(75) NOT NULL,
+    MotherOccupation VARCHAR(50) NOT NULL,
+    MotherMobile VARCHAR(10) UNIQUE NOT NULL,
+    GuardianName VARCHAR(75),
+    GuardianOccupation VARCHAR(50),
+    GuardianMobile VARCHAR(10) UNIQUE,
+    SpouseName VARCHAR(75),
+    SpouseOccupation VARCHAR(50),
+    SpouseMobile VARCHAR(10) UNIQUE
 );
 
 CREATE TABLE users(
@@ -77,3 +45,6 @@ INSERT INTO father VALUES
 INSERT INTO mother VALUES
 (1, 'Anna', 'Llyod', 'Jones', 'Teacher', 'Wisconsin', '9818391923'),
 (2, 'Almira', 'A.', 'Borthwick', 'Engineer', 'Boone', '9818391898');
+
+INSERT INTO users(Username, Password, UserType) VALUES
+('admin', 'admin', 'admin');
