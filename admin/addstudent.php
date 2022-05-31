@@ -15,63 +15,119 @@ $gender = [
 
 require_once '../assets/php/config.php';
 
-$FirstNameError = $LastNameError = $GenderError = $PermanentAddressError = $TemporaryAddressError = $MobileError = '';
-$EmailError = $DOBError = $ProfilePhotoError = $FatherNameError = $FatherOccupationError = $FatherMobileError = '';
-$MotherNameError = $MotherOccupationError = $MotherMobileError = ''; 
+$FirstNameError = $LastNameError = $GenderError = $PermanentAddressError = $TemporaryAddressError = $MobileError = $EmailError = $DOBError = $ProfilePhotoError = $FatherNameError = $FatherOccupationError = $FatherMobileError = $MotherNameError = $MotherOccupationError = $MotherMobileError = '';
 
 if(isset($_POST["register"])){
     $FirstName = $_POST["FirstName"];
+    $MiddleName = $_POST["MiddleName"];
+    $LastName = $_POST["LastName"];
+    $Gender = $_POST["Gender"];
+    $PermanentAddress = $_POST["PermanentAddress"];
+    $TemporaryAddress = $_POST["TemporaryAddress"];
+    $Mobile = $_POST["Mobile"];
+    $Email = $_POST["Email"];
+    $DOB = $_POST["DOB"];
+    $ProfilePhoto = $_POST["ProfilePhoto"];
+    $FatherName = $_POST["FatherName"];
+    $FatherOccupation = $_POST["FatherOccupation"];
+    $FatherMobile = $_POST["FatherMobile"];
+    $MotherName = $_POST["MotherName"];
+    $MotherOccupation = $_POST["MotherOccupation"];
+    $MotherMobile = $_POST["MotherMobile"];
+    $GuardianName = $_POST["GuardianName"];
+    $GuardianOccupation = $_POST["GuardianOccupation"];
+    $GuardianMobile = $_POST["GuardianMobile"];
+    $SpouseName = $_POST["SpouseName"];
+    $SpouseOccupation = $_POST["SpouseOccupation"];
+    $SpouseMobile = $_POST["SpouseMobile"];
+
+    if (empty(trim($FirstName))){
+        $FirstNameError = "Name can't be empty";
+        $Error = true;
+    } elseif(strlen(trim($FirstName)) < 3){
+        $FirstNameError = "First Name must be more than two alphabets.";
+        $Error = true;
+    } elseif (!preg_match("/^[a-zA-Z ]+$/",$FirstName)) {
+        $FirstNameError = "First name must contain only alphabets";
+        $Error = true;
+    } else{
+        $Error = false;
+    }
+
+    if (empty(trim($LastName))){
+        $LastNameError = "Name can't be empty";
+        $Error = true;
+    } elseif(strlen(trim($LastName)) < 3){
+        $LastNameError = "Last Name must be more than two alphabets.";
+        $Error = true;
+    } elseif (!preg_match("/^[a-zA-Z ]+$/",$LastName)) {
+        $LastNameError = "Last name must contain only alphabet";
+        $Error = true;
+    }else{
+        $Error = false;
+    }
+
+    if (empty(trim($PermanentAddress))){
+        $PermanentAddressError = "Address can't be empty";
+        $Error = true;
+    } else{
+        $Error = false;
+    }
+
+    if (empty(trim($TemporaryAddress))){
+        $TemporaryAddressError = "Address can't be empty";
+        $Error = true;
+    } else{
+        $Error = false;
+    }
+
+    if (empty(trim($Gender))){
+        $GenderError = "Gender must be specified";
+        $Error = true;
+    } else{
+        $Error = false;
+    }
+
+    if (empty(trim($Mobile))){
+        $MobileError = "Mobile Number can't be empty";
+        $Error = true;
+    } elseif (strlen(trim($Mobile)) < 10){
+        $MobileError = "Mobile Number must be of 10 numbers.";
+        $Error = true;
+    }else{
+        $Error = false;
+    }
+
+    if (empty(trim($Email))){
+        $EmailError = "Email can't be empty.";
+        $Error = true;
+    } elseif (!filter_var($Email, FILTER_VALIDATE_EMAIL)){
+        $EmailError = "Please enter a valid email.";
+        $Error = true;
+    }else{
+        $Error = false;
+    }
+
+    if (empty(trim($DOB))){
+        $DOBError = "Date can't be empty.";
+        $Error = true;
+    } else{
+        $Error = false;
+    }
+    
+
+    if(!$Error){
+        echo $FirstName . ' ' . $MiddleName . ' ' . $LastName;
+        echo "<br>\n" . $PermanentAddress . "<br>\n" . $TemporaryAddress;
+        echo "<br>\n" . $Gender . "<br>\n" . $Mobile . "<br>\n" . $Email;
+        echo "<br>\n" . $DOB . "<br>\n" . $FatherName . "<br>\n" . $FatherOccupation . "<br>\n" . $FatherMobile;
+        echo "<br>\n" . $MotherName . "<br>\n" . $MotherOccupation . "<br>\n" . $MotherMobile;
+        echo "<br>\n" . $GuardianName . "<br>\n" . $GuardianOccupation . "<br>\n" . $GuardianMobile;
+        echo "<br>\n" . $SpouseName . "<br>\n" . $SpouseOccupation . "<br>\n" . $SpouseMobile;
+    }
 }
 
-// $userNameError = "Username";
-// $firstNameError = "First Name";
-// $lastNameError = "Last Name";
-// $emailError = "Email Address";
-// $passwordError = "Password";
 // if(isset($_POST['register'])){
-//     $userName = $_POST['userName'];
-//     $firstName = $_POST['firstName'];
-//     $lastName = $_POST['lastName'];
-//     $email = $_POST['email'];
-//     $userPassword = $_POST['userPassword'];
-
-//     if (empty($userName)){
-//         $userNameError = "Username can't be blank.";
-//         $error = true;
-//     }
-//     if (empty($firstName)){
-//         $firstNameError = "First Name can't be blank.";
-//         $error = true;
-//     }
-//     if(empty($lastName)){
-//         $lastNameError = "Last Name can't be blank.";
-//         $error = true;
-//     }
-
-//     if(empty($email)){
-//         $emailError = "Email can't be blank.";
-//         $error = true;
-//     }
-
-//     if(empty($password)){
-//         $passwordError = "Password can't be blank.";
-//         $error = true;
-//     }
-
-//     if (!preg_match("/^[a-zA-Z ]+$/",$firstName)) {
-//         $firstNameError = "First name must contain only alphabets and space";
-//         $error = true;
-//     }
-
-//     if (!preg_match("/^[a-zA-Z ]+$/",$lastName)) {
-//         $lastNameError = "Last name must contain only alphabets and space";
-//         $error = true;
-//     }
-
-//     if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
-//         $emailError = "Please Enter Valid Email ID";
-//         $error = true;
-//     }
 
 //     if(strlen($password) < 6) {
 //         $passwordError = "Password must be minimum of 6 characters";
@@ -122,26 +178,30 @@ if(isset($_POST["register"])){
                     <div class="form-group row">            
                         
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="FirstName" class="form-control" placeholder="First Name">
+                            <input type="text" name="FirstName" class="form-control <?php echo (!empty($FirstNameError)) ? 'border-danger' : '';?>" value="<?php echo $FirstName;?>" placeholder="First Name">
+                            <span class="text-danger"><?php echo $FirstNameError;?></span>
                         </div>
                         
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="MiddleName" class="form-control" placeholder="Middle Name">
+                            <input type="text" name="MiddleName" class="form-control" placeholder="Middle Name" value="<?php echo $MiddleName;?>">
                         </div>
 
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="LastName" class="form-control" placeholder="Last Name">
+                            <input type="text" name="LastName" class="form-control <?php echo (!empty($LastNameError)) ? 'border-danger' : '';?>"  placeholder="Last Name" value="<?php echo $LastName;?>">
+                            <span class="text-danger"><?php echo $LastNameError?></span>
                         </div>
                     </div>
                     
                     <div class="form-group row">
                         
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="text" name="PermanentAddress" class="form-control" placeholder="Permanent Address">
+                            <input type="text" name="PermanentAddress" class="form-control <?php echo (!empty($PermanentAddressError)) ? 'border-danger' : '';?>" placeholder="Permanent Address" value="<?php echo $PermanentAddress;?>">
+                            <span class="text-danger"><?php echo $PermanentAddressError;?></span>
                         </div>
 
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="text" name="TemporaryAddress" class="form-control" placeholder="Temporary Address">
+                            <input type="text" name="TemporaryAddress" class="form-control <?php echo (!empty($TemporaryAddressError)) ? 'border-danger' : '';?>" placeholder="Temporary Address" value="<?php echo $TemporaryAddress;?>">
+                            <span class="text-danger"><?php echo $TemporaryAddressError;?></span>
                         </div>
                     </div>
 
@@ -153,18 +213,22 @@ if(isset($_POST["register"])){
                             <input type="radio" name="Gender" id="gender_<?php echo $key?>" value="<?php echo $key?>">
                             <label for="gender_<?php echo $key?>" class="mr-4 mt-2"><?php echo $value;?></label>
                             <?php endforeach ?>
+                            <span class="text-danger"><?php echo $GenderError;?></span>
                         </div>
                         
                         <div class="col-sm-3 mb-3 mb-sm-0">
-                            <input type="number" name="Mobile" class="form-control" placeholder="Mobile Number">
+                            <input type="number" name="Mobile" class="form-control <?php echo (!empty($MobileError)) ? 'border-danger' : '';?>" placeholder="Mobile Number">
+                            <span class="text-danger"><?php echo $MobileError;?></span>
                         </div>
 
                         <div class="col-sm-3 mb-3 mb-sm-0">
-                            <input type="email" name="Email" class="form-control" placeholder="Email">
+                            <input type="text" name="Email" class="form-control <?php echo (!empty($EmailError)) ? 'border-danger' : '';?>" placeholder="Email">
+                            <span class="text-danger"><?php echo $EmailError;?></span>
                         </div>
 
                         <div class="col-sm-3 mb-3 mb-sm-0">
-                            <input type="date" name="DOB" class="form-control">
+                            <input type="date" name="DOB" class="form-control <?php echo (!empty($DOBError)) ? 'border-danger' : '';?>">
+                            <span class="text-danger"><?php echo $DOBError?></span>
                         </div>
 
                     </div>
