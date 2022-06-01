@@ -115,8 +115,75 @@ if(isset($_POST["register"])){
         $Error = false;
     }
     
+    if (empty(trim($FatherName))){
+        $FatherNameError = "Father Name can't be empty.";
+        $Error = true;
+    } elseif (!preg_match("/^[a-zA-Z ]+$/",$FatherName)) {
+        $FatherNameError = "Father name must contain only alphabet";
+        $Error = true;
+    }else{
+        $Error = false;
+    }
 
-    if(!$Error){
+    if (empty(trim($FatherOccupation))){
+        $FatherOccupationError = "Father Occupation can't be empty.";
+        $Error = true;
+    } elseif (!preg_match("/^[a-zA-Z ]+$/",$FatherOccupation)) {
+        $FatherOccupationError = "Father Occupation must contain only alphabet";
+        $Error = true;
+    }else{
+        $Error = false;
+    }
+
+    if (empty(trim($FatherMobile))){
+        $FatherMobileError = "Mobile Number can't be empty";
+        $Error = true;
+    } elseif (strlen(trim($FatherMobile)) < 10){
+        $FatherMobileError = "Mobile Number must be of 10 numbers.";
+        $Error = true;
+    }else{
+        $Error = false;
+    }
+    
+    if (empty(trim($MotherName))){
+        $MotherNameError = "Mother Name can't be empty.";
+        $Error = true;
+    } elseif (!preg_match("/^[a-zA-Z ]+$/",$MotherName)) {
+        $FatherNameError = "Mother name must contain only alphabet";
+        $Error = true;
+    }else{
+        $Error = false;
+    }
+
+    if (empty(trim($MotherOccupation))){
+        $MotherOccupationError = "Mother Occupation can't be empty.";
+        $Error = true;
+    } elseif (!preg_match("/^[a-zA-Z ]+$/",$MotherOccupation)) {
+        $MotherOccupationError = "Mother Occupation must contain only alphabet";
+        $Error = true;
+    }else{
+        $Error = false;
+    }
+
+    if (empty(trim($MotherMobile))){
+        $MotherMobileError = "Mobile Number can't be empty";
+        $Error = true;
+    } elseif (strlen(trim($MotherMobile)) < 10){
+        $MotherMobileError = "Mobile Number must be of 10 numbers.";
+        $Error = true;
+    }else{
+        $Error = false;
+    }
+    
+    $stmt = $pdo -> prepare("SELECT * FROM student WHERE email=?");
+    $stmt -> execute([$Email]);
+
+    $EmailCheck = $stmt -> fetch();
+
+    if ($EmailCheck){
+        $EmailError = "Email Already Exists.";
+        $Error = true;
+    } else{
         echo $FirstName . ' ' . $MiddleName . ' ' . $LastName;
         echo "<br>\n" . $PermanentAddress . "<br>\n" . $TemporaryAddress;
         echo "<br>\n" . $Gender . "<br>\n" . $Mobile . "<br>\n" . $Email;
@@ -124,14 +191,39 @@ if(isset($_POST["register"])){
         echo "<br>\n" . $MotherName . "<br>\n" . $MotherOccupation . "<br>\n" . $MotherMobile;
         echo "<br>\n" . $GuardianName . "<br>\n" . $GuardianOccupation . "<br>\n" . $GuardianMobile;
         echo "<br>\n" . $SpouseName . "<br>\n" . $SpouseOccupation . "<br>\n" . $SpouseMobile;
+
+        $sql = $pdo -> prepare("INSERT INTO student(FirstName, MiddleName, LastName, Gender, PermanentAddress, TemporaryAddress, Mobile, Email, DOB, FatherName, FatherOccupation, FatherMobile, MotherName, MotherOccupation, MotherMobile, GuardianName, GuardianOccupation, GuardianMobile, SpouseName, SpouseOccupation, SpouseMobile) VALUES (:FirstName, :MiddleName, :LastName, :Gender, :PermanentAddress, :TemporaryAddress, :Mobile, :Email, :DOB, :FatherName, :FatherOccupation, :FatherMobile, :MotherName, :MotherOccupation, :MotherMobile, :GuardianName, :GuardianOccupation, :GuardianMobile, :SpouseName, :SpouseOccupation, :SpouseMobile)");
+
+        $sql -> bindParam(':FirstName', $FirstName);
+        $sql -> bindParam(':MiddleName', $MiddleName);
+        $sql -> bindParam(':LastName', $LastName);
+        $sql -> bindParam(':Gender', $Gender);
+        $sql -> bindParam(':PermanentAddress', $PermanentAddress);
+        $sql -> bindParam(':TemporaryAddress', $TemporaryAddress);
+        $sql -> bindParam(':Mobile', $Mobile);
+        $sql -> bindParam(':Email', $Email);
+        $sql -> bindParam(':DOB', $DOB);
+        $sql -> bindParam(':FatherName', $FatherName);
+        $sql -> bindParam(':FatherOccupation', $FatherOccupation);
+        $sql -> bindParam(':FatherMobile', $FatherMobile);
+        $sql -> bindParam(':MotherName', $MotherName);
+        $sql -> bindParam(':MotherOccupation', $MotherOccupation);
+        $sql -> bindParam(':MotherMobile', $MotherMobile);
+        $sql -> bindParam(':GuardianName', $GuardianName);
+        $sql -> bindParam(':GuardianOccupation', $GuardianOccupation);
+        $sql -> bindParam(':GuardianMobile', $GuardianMobile);
+        $sql -> bindParam(':SpouseName', $SpouseName);
+        $sql -> bindParam(':SpouseOccupation', $SpouseOccupation);
+        $sql -> bindParam(':SpouseMobile', $SpouseMobile);
+
+        $sql -> execute();
+
+        echo "Added Record";
     }
+
 }
 
 // if(isset($_POST['register'])){
-
-//     if(strlen($password) < 6) {
-//         $passwordError = "Password must be minimum of 6 characters";
-//     }
     
 //     if(!$error){
 //         $sql = "INSERT INTO users(userName, firstName, lastName, email,userPassword)VALUES('$userName', '$firstName', '$lastName', '$email', '$userPassword')";
@@ -217,17 +309,17 @@ if(isset($_POST["register"])){
                         </div>
                         
                         <div class="col-sm-3 mb-3 mb-sm-0">
-                            <input type="number" name="Mobile" class="form-control <?php echo (!empty($MobileError)) ? 'border-danger' : '';?>" placeholder="Mobile Number">
+                            <input type="number" name="Mobile" class="form-control <?php echo (!empty($MobileError)) ? 'border-danger' : '';?>" placeholder="Mobile Number" value="<?php echo $Mobile;?>">
                             <span class="text-danger"><?php echo $MobileError;?></span>
                         </div>
 
                         <div class="col-sm-3 mb-3 mb-sm-0">
-                            <input type="text" name="Email" class="form-control <?php echo (!empty($EmailError)) ? 'border-danger' : '';?>" placeholder="Email">
+                            <input type="text" name="Email" class="form-control <?php echo (!empty($EmailError)) ? 'border-danger' : '';?>" placeholder="Email" value="<?php echo $Email;?>">
                             <span class="text-danger"><?php echo $EmailError;?></span>
                         </div>
 
                         <div class="col-sm-3 mb-3 mb-sm-0">
-                            <input type="date" name="DOB" class="form-control <?php echo (!empty($DOBError)) ? 'border-danger' : '';?>">
+                            <input type="date" name="DOB" class="form-control <?php echo (!empty($DOBError)) ? 'border-danger' : '';?>" value="<?php echo $DOB;?>">
                             <span class="text-danger"><?php echo $DOBError?></span>
                         </div>
 
@@ -238,30 +330,36 @@ if(isset($_POST["register"])){
                     <div class="form-group row">
                         
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="FatherName" class="form-control" placeholder="Father's Name">
+                            <input type="text" name="FatherName" class="form-control <?php echo (!empty($FatherNameError)) ? 'border-danger' : '';?>" placeholder="Father's Name" value="<?php echo $FatherName;?>">
+                            <span class="text-danger"><?php echo $FatherNameError;?></span>
                         </div>
 
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="FatherOccupation" class="form-control" placeholder="Father's Occupation">
+                            <input type="text" name="FatherOccupation" class="form-control <?php echo (!empty($FatherOccupationError)) ? 'border-danger' : '';?>" placeholder="Father's Occupation" value="<?php echo $FatherOccupation;?>">
+                            <span class="text-danger"><?php echo $FatherOccupationError;?></span>
                         </div>
 
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="number" name="FatherMobile" class="form-control" placeholder="Father's Mobile Number">
+                            <input type="number" name="FatherMobile" class="form-control <?php echo (!empty($FatherMobileError)) ? 'border-danger' : '';?>" placeholder="Father's Mobile Number" value="<?php echo $FatherMobile;?>">
+                            <span class="text-danger"><?php echo $FatherMobileError;?></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="MotherName" class="form-control" placeholder="Mother's Name">
+                            <input type="text" name="MotherName" class="form-control <?php echo (!empty($MotherNameError)) ? 'border-danger' : '';?>" placeholder="Mother's Name" value="<?php echo $MotherName;?>">
+                            <span class="text-danger"><?php echo $MotherNameError;?></span>
                         </div>
 
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="MotherOccupation" class="form-control" placeholder="Mother's Occupation">
+                            <input type="text" name="MotherOccupation" class="form-control <?php echo (!empty($MotherOccupationError)) ? 'border-danger' : '';?>" placeholder="Mother's Occupation" value="<?php echo $MotherOccupation;?>">
+                            <span class="text-danger"><?php echo $MotherOccupationError;?></span>
                         </div>
 
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="number" name="MotherMobile" class="form-control" placeholder="Mother's Mobile Number">
+                            <input type="number" name="MotherMobile" class="form-control <?php echo (!empty($MotherMobileError)) ? 'border-danger' : '';?>" placeholder="Mother's Mobile Number" value="<?php echo $MotherMobile;?>">
+                            <span class="text-danger"><?php echo $MotherMobileError;?></span>
                         </div>
                     </div>
 
