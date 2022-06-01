@@ -18,6 +18,7 @@ require_once '../assets/php/config.php';
 $FirstNameError = $LastNameError = $GenderError = $PermanentAddressError = $TemporaryAddressError = $MobileError = $EmailError = $DOBError = $ProfilePhotoError = $FatherNameError = $FatherOccupationError = $FatherMobileError = $MotherNameError = $MotherOccupationError = $MotherMobileError = '';
 
 if(isset($_POST["register"])){
+    
     $FirstName = $_POST["FirstName"];
     $MiddleName = $_POST["MiddleName"];
     $LastName = $_POST["LastName"];
@@ -51,6 +52,7 @@ if(isset($_POST["register"])){
         $FirstNameError = "First name must contain only alphabets";
         $Error = true;
     } else{
+        $FirstNameError = '';
         $Error = false;
     }
 
@@ -184,14 +186,7 @@ if(isset($_POST["register"])){
         $EmailError = "Email Already Exists.";
         $Error = true;
     } else{
-        echo $FirstName . ' ' . $MiddleName . ' ' . $LastName;
-        echo "<br>\n" . $PermanentAddress . "<br>\n" . $TemporaryAddress;
-        echo "<br>\n" . $Gender . "<br>\n" . $Mobile . "<br>\n" . $Email;
-        echo "<br>\n" . $DOB . "<br>\n" . $FatherName . "<br>\n" . $FatherOccupation . "<br>\n" . $FatherMobile;
-        echo "<br>\n" . $MotherName . "<br>\n" . $MotherOccupation . "<br>\n" . $MotherMobile;
-        echo "<br>\n" . $GuardianName . "<br>\n" . $GuardianOccupation . "<br>\n" . $GuardianMobile;
-        echo "<br>\n" . $SpouseName . "<br>\n" . $SpouseOccupation . "<br>\n" . $SpouseMobile;
-
+        
         $sql = $pdo -> prepare("INSERT INTO student(FirstName, MiddleName, LastName, Gender, PermanentAddress, TemporaryAddress, Mobile, Email, DOB, FatherName, FatherOccupation, FatherMobile, MotherName, MotherOccupation, MotherMobile, GuardianName, GuardianOccupation, GuardianMobile, SpouseName, SpouseOccupation, SpouseMobile) VALUES (:FirstName, :MiddleName, :LastName, :Gender, :PermanentAddress, :TemporaryAddress, :Mobile, :Email, :DOB, :FatherName, :FatherOccupation, :FatherMobile, :MotherName, :MotherOccupation, :MotherMobile, :GuardianName, :GuardianOccupation, :GuardianMobile, :SpouseName, :SpouseOccupation, :SpouseMobile)");
 
         $sql -> bindParam(':FirstName', $FirstName);
@@ -215,31 +210,12 @@ if(isset($_POST["register"])){
         $sql -> bindParam(':SpouseName', $SpouseName);
         $sql -> bindParam(':SpouseOccupation', $SpouseOccupation);
         $sql -> bindParam(':SpouseMobile', $SpouseMobile);
-
+// 
         $sql -> execute();
 
-        echo "Added Record";
+        header("location: ./students.php");
     }
-
 }
-
-// if(isset($_POST['register'])){
-    
-//     if(!$error){
-//         $sql = "INSERT INTO users(userName, firstName, lastName, email,userPassword)VALUES('$userName', '$firstName', '$lastName', '$email', '$userPassword')";
-//         if (mysqli_query($conn, $sql)) {
-//             echo '<script type ="text/JavaScript">';  
-//             echo 'alert("Data Inserted Successfully")';  
-//             echo '</script>';
-//             header("location: ../users.php");  
-            
-//         } else {
-//             echo "Error: " . $sql . ":-" . mysqli_error($conn);
-//         }
-//         mysqli_close($conn);
-//     }
-// }
-
 
 ?>
 
