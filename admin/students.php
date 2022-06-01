@@ -5,7 +5,7 @@ session_start();
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     
     header("location: ./index.php");
-    exit;
+    exit();
 }
 
 require_once "../assets/php/config.php";
@@ -24,6 +24,7 @@ $sqlStudent = $pdo -> query("SELECT * FROM student");
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./vendor/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="./vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
 </head>
 <body id="page-top">
     <?php include 'header.php';?>
@@ -34,7 +35,7 @@ $sqlStudent = $pdo -> query("SELECT * FROM student");
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-2 text-gray-800">Students</h1>
-            <a href="./addstudent.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <a href="./addStudent.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i> Add New Student</a>
         </div>
 
@@ -50,20 +51,20 @@ $sqlStudent = $pdo -> query("SELECT * FROM student");
                             <tr>
                                 <th>Name</th>
                                 <th>Gender</th>
-                                <th>Address</th>
                                 <th>Mobile</th>
                                 <th>Email</th>
                                 <th>DOB</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Name</th>
                                 <th>Gender</th>
-                                <th>Address</th>
                                 <th>Mobile</th>
                                 <th>Email</th>
                                 <th>DOB</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -71,12 +72,18 @@ $sqlStudent = $pdo -> query("SELECT * FROM student");
                                 while ($row = $sqlStudent -> fetch()){
                             ?>
                             <tr>
-                                <td><?php echo $row["FirstName"] . ' ' . $row["MiddleName"] . ' ' . $row["LastName"];?></td>
+                                <td><?php echo '<a href="./viewStudent.php?RegNo=' . $row["RegNo"] . '" title="View Student"> '?>
+                                    <?php echo $row["FirstName"] . ' ' . $row["MiddleName"] . ' ' . $row["LastName"]?>
+                                    <?php echo '</a>'?>
+                                </td>
                                 <td><?php echo $row["Gender"]?></td>
-                                <td><?php echo $row["PermanentAddress"]?></td>
                                 <td><?php echo $row["Mobile"];?></td>
                                 <td><?php echo $row["Email"];?></td>
                                 <td><?php echo $row["DOB"];?></td>
+                                <td>
+                                    <?php echo '<a href="./editStudent.php?RegNo=' . $row["RegNo"] . '" title="Edit Student" class="btn btn-success btn-sm m-1"><i class="fa fa-pencil-alt"></i></a>';?>
+                                    <?php echo '<a href="./deleteStudent.php?RegNo=' . $row["RegNo"] . '" title="Delete Student" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash"></i></a>';?>
+                                </td>
                             </tr>
                             <?php 
                                 }
