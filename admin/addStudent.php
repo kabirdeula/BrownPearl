@@ -9,8 +9,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 $gender = [
-    'male' => 'Male',
-    'female' => 'Female'
+    'Male' => 'Male',
+    'Female' => 'Female'
 ];
 
 require_once '../assets/php/config.php';
