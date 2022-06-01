@@ -34,17 +34,8 @@ CREATE TABLE users(
     CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO student(FirstName, MiddleName, LastName, Gender, PermanentAddress, TemporaryAddress, Mobile, Email, DOB) VALUES
-('Frank', 'Lloyd', 'Wright', 'Male', 'Richland Center, Wisconsin, U.S.', 'Phoenix, Arizona, U.S.', '9887186791', 'frankwright67@gmail.com', '1867-06-08'),
-('Mary','' ,'Borthwick', 'Female', 'Boone, Iowa, U.S.', 'Spring Green, Wisconsin, U.S.', '9881906186', 'maryborthwick69@gmail.com', '1869-06-19');
-
-INSERT INTO father VALUES
-(1, 'William', 'Cary', 'Wright', 'Musician', 'Massachusetts', '9881825190'),
-(2, 'Marcus', 'Smith', 'Borthwick', 'Engineer', 'Boone', '9880912518');
-
-INSERT INTO mother VALUES
-(1, 'Anna', 'Llyod', 'Jones', 'Teacher', 'Wisconsin', '9818391923'),
-(2, 'Almira', 'A.', 'Borthwick', 'Engineer', 'Boone', '9818391898');
+INSERT INTO brownpearl.student(FirstName, MiddleName, LastName, Gender, PermanentAddress, TemporaryAddress, Mobile, Email, DOB, FatherName, FatherOccupation, FatherMobile, MotherName, MotherOccupation, MotherMobile, GuardianName, GuardianOccupation, GuardianMobile, SpouseName, SpouseOccupation, SpouseMobile) VALUES 
+('Naruto', '', 'Uzumaki', 'male', 'Chetrapati', 'Chetrapati', '9885140147', 'narutouzumaki@gmail.com', '1995-08-12', 'Minato Namikaze', 'Hokage', '9884159805', 'Kushina Uzumaki', 'Housewife', '9894838559', '', '', '', '', '', '');
 
 INSERT INTO users(Username, Password, UserType) VALUES
 ('admin', 'admin', 'admin');
