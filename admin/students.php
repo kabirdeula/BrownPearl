@@ -53,7 +53,7 @@ $sqlStudent = $pdo -> query("SELECT * FROM student");
                                 <th>Gender</th>
                                 <th>Mobile</th>
                                 <th>Email</th>
-                                <th>DOB</th>
+                                <th>Profile Creation</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -63,7 +63,7 @@ $sqlStudent = $pdo -> query("SELECT * FROM student");
                                 <th>Gender</th>
                                 <th>Mobile</th>
                                 <th>Email</th>
-                                <th>DOB</th>
+                                <th>Profile Creation</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -79,9 +79,9 @@ $sqlStudent = $pdo -> query("SELECT * FROM student");
                                 <td><?php echo $row["Gender"]?></td>
                                 <td><?php echo $row["Mobile"];?></td>
                                 <td><?php echo $row["Email"];?></td>
-                                <td><?php echo $row["DOB"];?></td>
+                                <td><?php echo $row["CreatedAt"];?></td>
                                 <td>
-                                    <?php echo '<a href="./editStudent.php?RegNo=' . $row["RegNo"] . '" title="Edit Student" class="btn btn-success btn-sm m-1"><i class="fa fa-pencil-alt"></i></a>';?>
+                                    <?php //echo '<a href="./editStudent.php?RegNo=' . $row["RegNo"] . '" title="Edit Student" class="btn btn-success btn-sm m-1"><i class="fa fa-pencil-alt"></i></a>';?>
                                     <?php echo '<a href="./deleteStudent.php?RegNo=' . $row["RegNo"] . '" title="Delete Student" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash"></i></a>';?>
                                 </td>
                             </tr>
