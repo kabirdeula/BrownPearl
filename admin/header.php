@@ -142,6 +142,8 @@ $activePage = basename($_SERVER["PHP_SELF"],".php");
                     <i class="fa fa-bars"></i>
                 </button>
                 
+                <!-- Clock -->
+                <div id="clock"></div>
                 <!-- Topbar Search -->
                 <!-- <form
                     class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
