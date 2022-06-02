@@ -20,7 +20,7 @@ if(isset($_GET["RegNo"]) && !empty(trim($_GET["RegNo"]))){
         header("location: ./students.php");
         exit();
     } else{
-        echo "Oops! Something went wrong. Please try again later.";
+        header("location: ./404.php");
     }
 }
 ?>
