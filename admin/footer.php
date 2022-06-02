@@ -2,7 +2,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Brown Pearl 2022 - <?php echo date("Y");?></span>
+                    <span>Copyright &copy; Brown Pearl 2022/05/26 - <?php echo date("Y/m/d");?></span>
                 </div>
             </div>
         </footer>
