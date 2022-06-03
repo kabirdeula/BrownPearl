@@ -82,7 +82,7 @@ $activePage = basename($_SERVER["PHP_SELF"],".php");
         </div> -->
         
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item <?php echo ($activePage === 'students') ? 'active' : '';?>">
+        <li class="nav-item <?php echo ($activePage === 'bca'  || $activePage === 'bim' || $activePage === 'bbm' || $activePage === 'bhm' || $activePage === 'bsccsit' || $activePage === 'addStudent') ? 'active' : '';?>">
             <a class="nav-link" href="./students.php" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-graduation-cap"></i>
                 <span>Student</span>
@@ -94,6 +94,8 @@ $activePage = basename($_SERVER["PHP_SELF"],".php");
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">Management:</h6>
                     <a class="collapse-item" href="./bim.php">BIM</a>
+                    <a class="collapse-item" href="./bbm.php">BBM</a>
+                    <a class="collapse-item" href="./bhm.php">BHM</a>
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">Science:</h6>
                     <a class="collapse-item" href="./bsccsit.php">Bsc CSIT</a>
