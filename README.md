@@ -50,6 +50,8 @@ A full set of additional modules and plugins to expand the possibilities of your
 
 You will find Brown Pearl to be a full-featured Student Information System that facilitates your decision-making, provides data necessary for reports to the federal or state governments as well as local boards, and affords convenient access to all of the stakeholders in your building or district. And, because it is web-based, the system can be logged into from any Internet connection.
 
+Project Started on May 26, 2022
+
 ## Diagrams
 
 ![Entity Relationship Diagram](./images/doc/ERDiagram.png)

@@ -26,9 +26,17 @@ $counter -> execute();
 $bimCount = $counter -> rowCount();
 
 
-$program = "Bsc CSIT";
+$program = "Bsc.CSIT";
 $counter -> execute();
 $csitCount = $counter -> rowCount();
+
+$program = "BBM";
+$counter -> execute();
+$bbmCount = $counter -> rowCount();
+
+$program = "BHM";
+$counter -> execute();
+$bhmCount = $counter -> rowCount();
 
 $genderCount = $pdo -> prepare("SELECT * FROM student WHERE Gender = :gender");
 $genderCount -> bindParam(':gender', $gender);
@@ -144,6 +152,48 @@ $femaleCount = $genderCount -> rowCount();
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-robot fa-2x text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BBM Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    BBM
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <?php echo $bbmCount;?>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-chart-area fa-2x text-success"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BHM Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-secondary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                    BHM
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <?php echo $bhmCount;?>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-cocktail fa-2x text-secondary"></i>
                             </div>
                         </div>
                     </div>
