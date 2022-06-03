@@ -90,15 +90,15 @@ $activePage = basename($_SERVER["PHP_SELF"],".php");
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Humanities:</h6>
-                    <a class="collapse-item" href="./bca.php">BCA</a>
+                    <a class="collapse-item" href="./bca.php"><i class="fas fa-desktop"></i> BCA</a>
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">Management:</h6>
-                    <a class="collapse-item" href="./bim.php">BIM</a>
-                    <a class="collapse-item" href="./bbm.php">BBM</a>
-                    <a class="collapse-item" href="./bhm.php">BHM</a>
+                    <a class="collapse-item" href="./bim.php"><i class="fas fa-laptop"></i> BIM</a>
+                    <a class="collapse-item" href="./bbm.php"><i class="fas fa-chart-area"></i> BBM</a>
+                    <a class="collapse-item" href="./bhm.php"><i class="fas fa-cocktail"></i> BHM</a>
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">Science:</h6>
-                    <a class="collapse-item" href="./bsccsit.php">Bsc CSIT</a>
+                    <a class="collapse-item" href="./bsccsit.php"><i class="fas fa-robot"></i> Bsc CSIT</a>
                 </div>
             </div>
         </li>
