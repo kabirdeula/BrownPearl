@@ -87,7 +87,7 @@ $sqlStudent = $pdo -> query("SELECT * FROM student WHERE Program = 'BHM'");
                                 <td><?php echo $row["Faculty"];?></td>
                                 <td><?php echo $row["Program"];?></td>
                                 <td>
-                                    <?php //echo '<a href="./editStudent.php?RegNo=' . $row["RegNo"] . '" title="Edit Student" class="btn btn-success btn-sm m-1"><i class="fa fa-pencil-alt"></i></a>';?>
+                                    <?php echo '<a href="./editStudent.php?RegNo=' . $row["RegNo"] . '" title="Edit Student" class="btn btn-success btn-sm m-1"><i class="fa fa-pencil-alt"></i></a>';?>
                                     <?php echo '<a href="./deleteStudent.php?RegNo=' . $row["RegNo"] . '" title="Delete Student" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash"></i></a>';?>
                                 </td>
                             </tr>
