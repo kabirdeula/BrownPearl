@@ -1,0 +1,50 @@
+{
+    "title": "Brown Pearl",
+    "name": "brownpearl-student-information-management-system",
+    "version": "1.0.0",
+    "description": "Extra class(PHP + Database) Project.",
+    "keywords": [
+        "css",
+        "sass",
+        "html",
+        "responsive",
+        "theme",
+        "template",
+        "admin",
+        "student",
+        "management-system"
+    ],
+    "bugs": {
+        "url": "https://github.com/kabirdeula/BrownPearl/issues",
+        "email": "kabirdeula167@gmail.com"
+    },
+    "license": "GNU GENERAL PUBLIC LICENSE",
+    "author": "Kabir Deula",
+    "contributors": [
+        "Bijina Maharjan (https://github.com/bijinamaharjan)"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kabirdeula/BrownPearl.git"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "5.15.3",
+        "bootstrap": "4.6.0",
+        "datatables.net-bs4": "1.10.24",
+        "jquery": "3.6.0",
+        "jquery.easing": "^1.4.1"
+    },
+    "devDependencies": {
+        "browser-sync": "2.26.14",
+        "del": "6.0.0",
+        "gulp": "4.0.2",
+        "gulp-autoprefixer": "7.0.1",
+        "gulp-clean-css": "4.3.0",
+        "gulp-header": "2.0.9",
+        "gulp-plumber": "^1.2.1",
+        "gulp-rename": "2.0.0",
+        "gulp-sass": "4.1.0",
+        "gulp-uglify": "3.0.2",
+        "merge-stream": "2.0.0"
+    }
+}

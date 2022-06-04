@@ -17,9 +17,10 @@ require_once '../assets/php/config.php';
 
 $FirstNameError = $LastNameError = $GenderError = $PermanentAddressError = $TemporaryAddressError = $MobileError = $EmailError = $ProfilePhotoError = $FatherNameError = $FatherOccupationError = $FatherMobileError = $MotherNameError = $MotherOccupationError = $MotherMobileError = $FacultyError = $LevelError = $ProgramError = $SemesterError = '';
 
-if(isset($_POST["register"])){
+if (isset($_POST["RegNo"]) & !empty($_POST["RegNo"])){
 
     try{
+        $RegNo = $_POST["RegNo"];
         $FirstName = $_POST["FirstName"];
         $MiddleName = $_POST["MiddleName"];
         $LastName = $_POST["LastName"];
@@ -217,53 +218,70 @@ if(isset($_POST["register"])){
             $SemesterError = '';
             $Error = false;
         }
-    
-        $stmt = $pdo -> prepare("SELECT * FROM student WHERE email=?");
-        $stmt -> execute([$Email]);
 
-        $EmailCheck = $stmt -> fetch();
+        if(!$Error){
 
-        if ($EmailCheck){
-            $EmailError = "Email Already Exists.";
-            $Error = true;
-        } elseif (!$Error){
-        
-            $sql = $pdo -> prepare("INSERT INTO student(FirstName, MiddleName, LastName, Gender, PermanentAddress, TemporaryAddress, Mobile, Email, FatherName, FatherOccupation, FatherMobile, MotherName, MotherOccupation, MotherMobile, GuardianName, GuardianOccupation, GuardianMobile, SpouseName, SpouseOccupation, SpouseMobile, Faculty, Level, Program, Semester) VALUES (:FirstName, :MiddleName, :LastName, :Gender, :PermanentAddress, :TemporaryAddress, :Mobile, :Email, :FatherName, :FatherOccupation, :FatherMobile, :MotherName, :MotherOccupation, :MotherMobile, :GuardianName, :GuardianOccupation, :GuardianMobile, :SpouseName, :SpouseOccupation, :SpouseMobile, :Faculty, :Level, :Program, :Semester)");
+            $update = $pdo -> prepare("UPDATE student SET FirstName = :FirstName, MiddleName = :MiddleName, LastName = :LastName, Gender = :Gender, PermanentAddress = :PermanentAddress, TemporaryAddress = :TemporaryAddress, Mobile = :Mobile, Email = :Email, FatherName = :FatherName, FatherOccupation = :FatherOccupation, FatherMobile = :FatherMobile, MotherName = :MotherName, MotherOccupation = :MotherOccupation, MotherMobile = :MotherMobile, GuardianName = :GuardianName, GuardianOccupation = :GuardianOccupation, GuardianMobile = :GuardianMobile, SpouseName = :SpouseName, SpouseOccupation = :SpouseOccupation, SpouseMobile = :SpouseMobile, Faculty = :Faculty, Level = :Level, Program = :Program, Semester = :Semester WHERE RegNo = :RegNo");
 
-            $sql -> bindParam(':FirstName', $FirstName);
-            $sql -> bindParam(':MiddleName', $MiddleName);
-            $sql -> bindParam(':LastName', $LastName);
-            $sql -> bindParam(':Gender', $Gender);
-            $sql -> bindParam(':PermanentAddress', $PermanentAddress);
-            $sql -> bindParam(':TemporaryAddress', $TemporaryAddress);
-            $sql -> bindParam(':Mobile', $Mobile);
-            $sql -> bindParam(':Email', $Email);
-            $sql -> bindParam(':FatherName', $FatherName);
-            $sql -> bindParam(':FatherOccupation', $FatherOccupation);
-            $sql -> bindParam(':FatherMobile', $FatherMobile);
-            $sql -> bindParam(':MotherName', $MotherName);
-            $sql -> bindParam(':MotherOccupation', $MotherOccupation);
-            $sql -> bindParam(':MotherMobile', $MotherMobile);
-            $sql -> bindParam(':GuardianName', $GuardianName);
-            $sql -> bindParam(':GuardianOccupation', $GuardianOccupation);
-            $sql -> bindParam(':GuardianMobile', $GuardianMobile);
-            $sql -> bindParam(':SpouseName', $SpouseName);
-            $sql -> bindParam(':SpouseOccupation', $SpouseOccupation);
-            $sql -> bindParam(':SpouseMobile', $SpouseMobile);
-            $sql -> bindParam(':Faculty',$Faculty);        
-            $sql -> bindParam(':Level',$Level);
-            $sql -> bindParam(':Program',$Program);
-            $sql -> bindParam(':Semester',$Semester);        
+            $update -> bindParam(':RegNo', $RegNo);
+            $update -> bindParam(':FirstName', $FirstName);
+            $update -> bindParam(':MiddleName', $MiddleName);
+            $update -> bindParam(':LastName', $LastName);
+            $update -> bindParam(':Gender', $Gender);
+            $update -> bindParam(':PermanentAddress', $PermanentAddress);
+            $update -> bindParam(':TemporaryAddress', $TemporaryAddress);
+            $update -> bindParam(':Mobile', $Mobile);
+            $update -> bindParam(':Email', $Email);
+            $update -> bindParam(':FatherName', $FatherName);
+            $update -> bindParam(':FatherOccupation', $FatherOccupation);
+            $update -> bindParam(':FatherMobile', $FatherMobile);
+            $update -> bindParam(':MotherName', $MotherName);
+            $update -> bindParam(':MotherOccupation', $MotherOccupation);
+            $update -> bindParam(':MotherMobile', $MotherMobile);
+            $update -> bindParam(':GuardianName', $GuardianName);
+            $update -> bindParam(':GuardianOccupation', $GuardianOccupation);
+            $update -> bindParam(':GuardianMobile', $GuardianMobile);
+            $update -> bindParam(':SpouseName', $SpouseName);
+            $update -> bindParam(':SpouseOccupation', $SpouseOccupation);
+            $update -> bindParam(':SpouseMobile', $SpouseMobile);
+            $update -> bindParam(':Faculty', $Faculty);            
+            $update -> bindParam(':Level', $Level);            
+            $update -> bindParam(':Program', $Program);            
+            $update -> bindParam(':Semester', $Semester);     
 
-            $sql -> execute();
-
-            header("location: ./index.php");
+            if($update -> execute()){
+                header("location: ./index.php");
+            }else{
+                echo "Error";
+            }
+        }else{
+            echo "Error";
         }
-    } catch(PDOException $e){
+    }catch(PDOException $e){
         die($e -> getMessage());
     }
-}
+} else{
 
+    if (isset($_GET["RegNo"]) & !empty($_GET["RegNo"])){
+        try{
+            $RegNo = $_GET["RegNo"];
+
+            $select = $pdo -> prepare("SELECT * FROM student WHERE RegNo = :RegNo LIMIT 1");
+
+            $select -> bindParam(':RegNo', $RegNo);
+
+            $select -> execute();
+
+            $row = $select -> fetch();
+
+        }catch(PDOException $e){
+            $error = $e -> getMessage();
+        }
+    }else{
+        echo $error;
+    }
+}
+        
 ?>
 
 <!DOCTYPE html>
@@ -272,7 +290,7 @@ if(isset($_POST["register"])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Student</title>
+    <title>Edit Student</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./vendor/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -283,7 +301,7 @@ if(isset($_POST["register"])){
     <!-- Beigin Page Content -->
     <div class="container-fluid">
 
-        <h1 class="h3 mb-2 text-gray-800">Add New Record</h1>
+        <h1 class="h3 mb-2 text-gray-800">Update Student</h1>
 
         <div class="card shadow mb-4">
             <div class="card-body p-5">
@@ -294,16 +312,16 @@ if(isset($_POST["register"])){
                     <div class="form-group row">            
                         
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="FirstName" class="form-control <?php echo (!empty($FirstNameError)) ? 'border-danger' : '';?>" value="<?php echo $FirstName;?>" placeholder="First Name">
+                            <input type="text" name="FirstName" class="form-control <?php echo (!empty($FirstNameError)) ? 'border-danger' : '';?>" value="<?php echo $row["FirstName"];?>" placeholder="First Name">
                             <span class="text-danger"><?php echo $FirstNameError;?></span>
                         </div>
                         
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="MiddleName" class="form-control" placeholder="Middle Name" value="<?php echo $MiddleName;?>">
+                            <input type="text" name="MiddleName" class="form-control" placeholder="Middle Name" value="<?php echo $row["MiddleName"];?>">
                         </div>
 
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="LastName" class="form-control <?php echo (!empty($LastNameError)) ? 'border-danger' : '';?>"  placeholder="Last Name" value="<?php echo $LastName;?>">
+                            <input type="text" name="LastName" class="form-control <?php echo (!empty($LastNameError)) ? 'border-danger' : '';?>"  placeholder="Last Name" value="<?php echo $row["LastName"];?>">
                             <span class="text-danger"><?php echo $LastNameError?></span>
                         </div>
                     </div>
@@ -311,12 +329,12 @@ if(isset($_POST["register"])){
                     <div class="form-group row">
                         
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="text" name="PermanentAddress" class="form-control <?php echo (!empty($PermanentAddressError)) ? 'border-danger' : '';?>" placeholder="Permanent Address" value="<?php echo $PermanentAddress;?>">
+                            <input type="text" name="PermanentAddress" class="form-control <?php echo (!empty($PermanentAddressError)) ? 'border-danger' : '';?>" placeholder="Permanent Address" value="<?php echo $row["PermanentAddress"];?>">
                             <span class="text-danger"><?php echo $PermanentAddressError;?></span>
                         </div>
 
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="text" name="TemporaryAddress" class="form-control <?php echo (!empty($TemporaryAddressError)) ? 'border-danger' : '';?>" placeholder="Temporary Address" value="<?php echo $TemporaryAddress;?>">
+                            <input type="text" name="TemporaryAddress" class="form-control <?php echo (!empty($TemporaryAddressError)) ? 'border-danger' : '';?>" placeholder="Temporary Address" value="<?php echo $row["TemporaryAddress"];?>">
                             <span class="text-danger"><?php echo $TemporaryAddressError;?></span>
                         </div>
                     </div>
@@ -333,12 +351,12 @@ if(isset($_POST["register"])){
                         </div>
                         
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="number" name="Mobile" class="form-control <?php echo (!empty($MobileError)) ? 'border-danger' : '';?>" placeholder="Mobile Number" value="<?php echo $Mobile;?>">
+                            <input type="number" name="Mobile" class="form-control <?php echo (!empty($MobileError)) ? 'border-danger' : '';?>" placeholder="Mobile Number" value="<?php echo $row["Mobile"];?>">
                             <span class="text-danger"><?php echo $MobileError;?></span>
                         </div>
 
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="Email" class="form-control <?php echo (!empty($EmailError)) ? 'border-danger' : '';?>" placeholder="Email" value="<?php echo $Email;?>">
+                            <input type="text" name="Email" class="form-control <?php echo (!empty($EmailError)) ? 'border-danger' : '';?>" placeholder="Email" value="<?php echo $row["Email"];?>">
                             <span class="text-danger"><?php echo $EmailError;?></span>
                         </div>
 
@@ -347,22 +365,22 @@ if(isset($_POST["register"])){
                     <div class="form-group row">
                         
                         <div class="col-sm-3 mb-3 mb-sm-0">
-                            <input type="text" name="Faculty" class="form-control <?php echo (!empty($FacultyError)) ? 'border-danger' : '';?>" placeholder="Faculty" value="<?php echo $Faculty;?>">
+                            <input type="text" name="Faculty" class="form-control <?php echo (!empty($FacultyError)) ? 'border-danger' : '';?>" placeholder="Faculty" value="<?php echo $row["Faculty"];?>">
                             <span class="text-danger"><?php echo $FacultyError?></span>
                         </div>
                         
                         <div class="col-sm-3 mb-3 mb-sm-0">
-                            <input type="text" name="Level" class="form-control <?php echo (!empty($LevelError)) ? 'border-danger' : '';?>" placeholder="Level" value="<?php echo $Level;?>">
+                            <input type="text" name="Level" class="form-control <?php echo (!empty($LevelError)) ? 'border-danger' : '';?>" placeholder="Level" value="<?php echo $row["Level"];?>">
                             <span class="text-danger"><?php echo $LevelError;?></span>
                         </div>
 
                         <div class="col-sm-3 mb-3 mb-sm-0">
-                            <input type="text" name="Program" class="form-control <?php echo (!empty($ProgramError)) ? 'border-danger' : '';?>" placeholder="Program" value="<?php echo $Program;?>">
+                            <input type="text" name="Program" class="form-control <?php echo (!empty($ProgramError)) ? 'border-danger' : '';?>" placeholder="Program" value="<?php echo $row["Program"];?>">
                             <span class="text-danger"><?php echo $ProgramError;?></span>
                         </div>
 
                         <div class="col-sm-3 mb-3 mb-sm-0">
-                            <input type="text" name="Semester" class="form-control <?php echo (!empty($SemesterError)) ? 'border-danger' : '';?>" placeholder="Semester" value="<?php echo $Semester;?>">
+                            <input type="text" name="Semester" class="form-control <?php echo (!empty($SemesterError)) ? 'border-danger' : '';?>" placeholder="Semester" value="<?php echo $row["Semester"];?>">
                             <span class="text-danger"><?php echo $SemesterError;?></span>
                         </div>
 
@@ -373,17 +391,17 @@ if(isset($_POST["register"])){
                     <div class="form-group row">
                         
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="FatherName" class="form-control <?php echo (!empty($FatherNameError)) ? 'border-danger' : '';?>" placeholder="Father's Name" value="<?php echo $FatherName;?>">
+                            <input type="text" name="FatherName" class="form-control <?php echo (!empty($FatherNameError)) ? 'border-danger' : '';?>" placeholder="Father's Name" value="<?php echo $row["FatherName"];?>">
                             <span class="text-danger"><?php echo $FatherNameError;?></span>
                         </div>
 
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="FatherOccupation" class="form-control <?php echo (!empty($FatherOccupationError)) ? 'border-danger' : '';?>" placeholder="Father's Occupation" value="<?php echo $FatherOccupation;?>">
+                            <input type="text" name="FatherOccupation" class="form-control <?php echo (!empty($FatherOccupationError)) ? 'border-danger' : '';?>" placeholder="Father's Occupation" value="<?php echo $row["FatherOccupation"];?>">
                             <span class="text-danger"><?php echo $FatherOccupationError;?></span>
                         </div>
 
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="number" name="FatherMobile" class="form-control <?php echo (!empty($FatherMobileError)) ? 'border-danger' : '';?>" placeholder="Father's Mobile Number" value="<?php echo $FatherMobile;?>">
+                            <input type="number" name="FatherMobile" class="form-control <?php echo (!empty($FatherMobileError)) ? 'border-danger' : '';?>" placeholder="Father's Mobile Number" value="<?php echo $row["FatherMobile"];?>">
                             <span class="text-danger"><?php echo $FatherMobileError;?></span>
                         </div>
                     </div>
@@ -391,17 +409,17 @@ if(isset($_POST["register"])){
                     <div class="form-group row">
                         
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="MotherName" class="form-control <?php echo (!empty($MotherNameError)) ? 'border-danger' : '';?>" placeholder="Mother's Name" value="<?php echo $MotherName;?>">
+                            <input type="text" name="MotherName" class="form-control <?php echo (!empty($MotherNameError)) ? 'border-danger' : '';?>" placeholder="Mother's Name" value="<?php echo $row["MotherName"];?>">
                             <span class="text-danger"><?php echo $MotherNameError;?></span>
                         </div>
 
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="MotherOccupation" class="form-control <?php echo (!empty($MotherOccupationError)) ? 'border-danger' : '';?>" placeholder="Mother's Occupation" value="<?php echo $MotherOccupation;?>">
+                            <input type="text" name="MotherOccupation" class="form-control <?php echo (!empty($MotherOccupationError)) ? 'border-danger' : '';?>" placeholder="Mother's Occupation" value="<?php echo $row["MotherOccupation"];?>">
                             <span class="text-danger"><?php echo $MotherOccupationError;?></span>
                         </div>
 
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="number" name="MotherMobile" class="form-control <?php echo (!empty($MotherMobileError)) ? 'border-danger' : '';?>" placeholder="Mother's Mobile Number" value="<?php echo $MotherMobile;?>">
+                            <input type="number" name="MotherMobile" class="form-control <?php echo (!empty($MotherMobileError)) ? 'border-danger' : '';?>" placeholder="Mother's Mobile Number" value="<?php echo $row["MotherMobile"];?>">
                             <span class="text-danger"><?php echo $MotherMobileError;?></span>
                         </div>
                     </div>
@@ -409,40 +427,41 @@ if(isset($_POST["register"])){
                     <div class="form-group row">
                         
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="GuardianName" class="form-control" placeholder="Guardian's Name">
+                            <input type="text" name="GuardianName" class="form-control" placeholder="Guardian's Name" value="<?php echo $row["GuardianName"];?>">
                         </div>
 
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="GuardianOccupation" class="form-control" placeholder="Guardian's Occupation">
+                            <input type="text" name="GuardianOccupation" class="form-control" placeholder="Guardian's Occupation" value="<?php echo $row["GuardianOccupation"];?>">
                         </div>
 
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="number" name="GuardianMobile" class="form-control" placeholder="Guardian's Mobile Number">
+                            <input type="number" name="GuardianMobile" class="form-control" placeholder="Guardian's Mobile Number" value="<?php echo $row["GuardianMobile"];?>">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="SpouseName" class="form-control" placeholder="Spouse's Name">
+                            <input type="text" name="SpouseName" class="form-control" placeholder="Spouse's Name" value="<?php echo $row["SpouseName"];?>">
                         </div>
 
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="text" name="SpouseOccupation" class="form-control" placeholder="Spouse's Occupation">
+                            <input type="text" name="SpouseOccupation" class="form-control" placeholder="Spouse's Occupation" value="<?php echo $row["SpouseOccupation"];?>">
                         </div>
 
                         <div class="col-sm-4 mb-3 mb-sm-0">
-                            <input type="number" name="SpouseMobile" class="form-control" placeholder="Spouse's Mobile Number">
+                            <input type="number" name="SpouseMobile" class="form-control" placeholder="Spouse's Mobile Number" value="<?php echo $row["SpouseMobile"];?>">
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-success btn-block" value="Submit" name="register">
+                    
+                    <input type="hidden" name="RegNo" value="<?php echo $RegNo; ?>">
+                    <input type="submit" class="btn btn-success btn-block" value="Update" name="update">
                 </form>
             </div>
         </div>
     </div>
-    
     <!-- End Page Content -->
-</div>
+</div> 
     <?php include 'footer.php';?>
 </body>
 </html>

@@ -62,6 +62,10 @@ Project Started on May 26, 2022
 
 ![Dashboard](./images/screenshot/dashboard.png)
 
+![Create Student](./images/screenshot/createstudent.png)
+
+![Update Student](./images/screenshot/updatestudent.png)
+
 ## Links
 
 <a href="https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php"><img src="https://img.shields.io/badge/Tutorial_Republic-FF0000?style=for-the-badge"></a>
