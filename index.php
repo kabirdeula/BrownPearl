@@ -83,15 +83,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div class="container-fluid">
-    
-        <?php
-            if(!empty($loginError)){
-                echo '<div class="alert alert-danger">' . $loginError . '</div>';
-            }
-        ?>
 
         <div class="row">
             <div class="col-sm-6 d-flex flex-column py-4 px-5">
+
+            <?php
+                if(!empty($loginError)){
+                    echo '<div class="alert alert-danger mx-5">' . $loginError . '</div>';
+                }
+            ?>
                 <div class="py-3 ps-5">
                         <h3 class="h-25">Brown Pearl</h3>
                 </div>

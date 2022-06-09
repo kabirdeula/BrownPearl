@@ -10,7 +10,7 @@ $activePage = basename($_SERVER["PHP_SELF"],".php");
 <div id="wrapper">
     
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-primary bg-gradient sidebar sidebar-dark accordion" id="accordionSidebar">
         
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./index.php">
@@ -143,7 +143,7 @@ $activePage = basename($_SERVER["PHP_SELF"],".php");
                 </button>
                 
                 <!-- Clock -->
-                <div id="clock"></div>
+                <div id="clock" class="mx-3 h4 text-gray-600"></div>
                 <!-- Topbar Search -->
                 <!-- <form
                     class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
