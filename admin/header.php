@@ -82,23 +82,23 @@ $activePage = basename($_SERVER["PHP_SELF"],".php");
         </div> -->
         
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item <?php echo ($activePage === 'bca'  || $activePage === 'bim' || $activePage === 'bbm' || $activePage === 'bhm' || $activePage === 'bsccsit' || $activePage === 'addStudent') ? 'active' : '';?>">
-            <a class="nav-link" href="./students.php" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+        <li class="nav-item no-arrow dropend <?php echo ($activePage === 'bca'  || $activePage === 'bim' || $activePage === 'bbm' || $activePage === 'bhm' || $activePage === 'bsccsit' || $activePage === 'addStudent') ? 'active' : '';?>">
+            <a class="nav-link dropdown-toggle" id="dropdownMenuOffSet" href="#" data-bs-toggle="dropdown" aria-expanded="false"  data-bs-offset="10,10">
                 <i class="fas fa-fw fa-graduation-cap"></i>
                 <span>Student</span>
             </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Humanities:</h6>
-                    <a class="collapse-item" href="./bca.php"><i class="fas fa-desktop"></i> BCA</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Management:</h6>
-                    <a class="collapse-item" href="./bim.php"><i class="fas fa-laptop"></i> BIM</a>
-                    <a class="collapse-item" href="./bbm.php"><i class="fas fa-chart-area"></i> BBM</a>
-                    <a class="collapse-item" href="./bhm.php"><i class="fas fa-cocktail"></i> BHM</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Science:</h6>
-                    <a class="collapse-item" href="./bsccsit.php"><i class="fas fa-robot"></i> Bsc CSIT</a>
+            <div class="dropdown-menu dropend" aria-labelledby="dropdownMenuOffSet">
+                <div class="bg-white rounded">
+                    <h6 class="dropdown-header">Humanities:</h6>
+                    <a class="dropdown-item" href="./bca.php"><i class="fas fa-desktop"></i> BCA</a>
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Management:</h6>
+                    <a class="dropdown-item" href="./bim.php"><i class="fas fa-laptop"></i> BIM</a>
+                    <a class="dropdown-item" href="./bbm.php"><i class="fas fa-chart-area"></i> BBM</a>
+                    <a class="dropdown-item" href="./bhm.php"><i class="fas fa-cocktail"></i> BHM</a>
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Science:</h6>
+                    <a class="dropdown-item" href="./bsccsit.php"><i class="fas fa-robot"></i> Bsc CSIT</a>
                 </div>
             </div>
         </li>
@@ -305,16 +305,14 @@ $activePage = basename($_SERVER["PHP_SELF"],".php");
                     <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
                     
                     <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class="nav-item dropstart no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuOffSet" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="20, 0">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo htmlspecialchars($_SESSION["username"]);?></span>
                             <img class="img-profile rounded-circle"
                                 src="img/undraw_profile.svg">
                         </a>
                         <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="userDropdown">
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
                             <!-- <a class="dropdown-item" href="#">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
@@ -328,7 +326,7 @@ $activePage = basename($_SERVER["PHP_SELF"],".php");
                                 Activity Log
                             </a> -->
                             <!-- <div class="dropdown-divider"></div> -->
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                             </a>
