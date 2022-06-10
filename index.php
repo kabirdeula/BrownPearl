@@ -10,23 +10,23 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 require_once "./assets/php/config.php";
 
 $username = $password = "";
-$usernameErr = $passwordErr = $loginErr = "";
+$usernameError = $passwordError = $loginError = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if(empty(trim($_POST["Username"]))){
-        $usernameErr = "Please enter your username.";
+        $usernameError = "Please enter your username.";
     } else{
         $username = trim($_POST["Username"]);
     }
 
     if(empty(trim($_POST["Password"]))){
-        $passwordErr = "Please enter your password.";
+        $passwordError = "Please enter your password.";
     } else{
         $password = trim($_POST["Password"]);
     }
 
-    if(empty($usernameErr) && empty($passwordErr)){
+    if(empty($usernameError) && empty($passwordError)){
         
         $sql = "SELECT UserID, Username, Password FROM users WHERE Username = :username";
 
@@ -56,7 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     }
                 } else{
 
-                    $loginErr = "Invalid Username or Password.";
+                    $loginError = "Invalid Username or Password.";
                 }
             } else{
 
@@ -79,42 +79,49 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <style>
-        body{font: 14px sans-serrif;}
-        .wrapper{width:360px; padding: 20px;}
-    </style>
+    <link rel="stylesheet" href="./css/style.min.css">
 </head>
 <body>
-    <div class="wrapper">
-        <h2>Login</h2>
-        <p>Please fill in your credentials to login.</p>
+    <div class="container-fluid">
 
-        <?php
-        if(!empty($loginErr)){
-            echo '<div class="alert alert-danger">' . $loginErr . '</div>';
-        }
-        ?>
+        <div class="row">
+            <div class="col-sm-6 d-flex flex-column py-4 px-5">
 
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-            <div class="form-floating mb-3">
-                <input type="text" name="Username" class="form-control <?php echo (!empty($usernameErr)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>" placeholder="Username">
-                <label>Username</label>
-                <span class="invalid-feedback">
-                    <?php echo $usernameErr;?>
-                </span>
+            <?php
+                if(!empty($loginError)){
+                    echo '<div class="alert alert-danger mx-5">' . $loginError . '</div>';
+                }
+            ?>
+                <div class="py-3 ps-5">
+                        <h3 class="h-25">Brown Pearl</h3>
+                </div>
+                <div class="py-3 px-5">
+                    <h1 class="mb-4 font-weight-bold h3">Log In</h1>
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                        <div class="form-floating mb-2">
+                            <input type="text" name="Username" id="Username" class="form-control <?php echo (!empty($usernameErroror)) ? 'is-invalid' : '';?>" placeholder="Username" value="<?php echo $username;?>">
+                            <label for="Username">Username</label>
+                            <span class="invalid-feedback">
+                                <?php echo $usernameError;?>
+                            </span>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="password" name="Password" id="Password" class="form-control <?php echo (!empty($passwordError)) ? 'is-invalid' : '';?>" placeholder="Password">
+                            <label for="Password">Password</label>
+                            <span class="invalid-feedback">
+                                <?php echo $passwordError;?>
+                            </span>
+                        </div>
+                        <div class="d-grid gap2">
+                            <input type="submit" value="Login" class="btn btn-warning">
+                        </div>
+                    </form>
+                </div>
+            </div>    
+            <div class="col-sm-6 px-0 d-none d-sm-block">
+                <img src="./images/login.jpg" alt="" class="w-100 vh-100">
             </div>
-            <div class="form-floating mb-3">
-                <input type="password" name="Password" class="form-control <?php echo (!empty($passwordErr)) ? 'is-invalid' : ''; ?>" placeholder="Password">
-                <label>Password</label>
-                <span class="invalid-feedback">
-                    <?php echo $passwordErr;?>
-                </span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary">
-            </div>
-        </form>
+        </div>
     </div>
 </body>
 </html>

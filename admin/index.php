@@ -58,13 +58,15 @@ $femaleCount = $genderCount -> rowCount();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="./vendor/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="./vendor/datatables/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
 </head>
 <body id="page-top">
     <?php include 'header.php';?>
+    
+    <!-- Container Start -->
     <div class="container-fluid">
 
         <!-- Page Heading -->
@@ -72,6 +74,7 @@ $femaleCount = $genderCount -> rowCount();
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
         </div>
 
+        <!-- Row Start -->
         <div class="row">
 
             <!-- Student Card -->
@@ -80,10 +83,10 @@ $femaleCount = $genderCount -> rowCount();
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                <div class="text-xs fw-bold text-primary text-uppercase mb-1">
                                     Students
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <div class="h5 mb-0 fw-bold text-gray-800">
                                     <?php echo $studentCount;?>
                                 </div>
                             </div>
@@ -101,10 +104,10 @@ $femaleCount = $genderCount -> rowCount();
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                <div class="text-xs fw-bold text-success text-uppercase mb-1">
                                     BCA
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <div class="h5 mb-0 fw-bold text-gray-800">
                                     <?php echo $bcaCount;?>
                                 </div>
                             </div>
@@ -122,10 +125,10 @@ $femaleCount = $genderCount -> rowCount();
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                <div class="text-xs fw-bold text-info text-uppercase mb-1">
                                     BIM
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <div class="h5 mb-0 fw-bold text-gray-800">
                                     <?php echo $bimCount;?>
                                 </div>
                             </div>
@@ -143,10 +146,10 @@ $femaleCount = $genderCount -> rowCount();
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                <div class="text-xs fw-bold text-warning text-uppercase mb-1">
                                     Bsc CSIT
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <div class="h5 mb-0 fw-bold text-gray-800">
                                     <?php echo $csitCount;?>
                                 </div>
                             </div>
@@ -164,10 +167,10 @@ $femaleCount = $genderCount -> rowCount();
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                <div class="text-xs fw-bold text-success text-uppercase mb-1">
                                     BBM
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <div class="h5 mb-0 fw-bold text-gray-800">
                                     <?php echo $bbmCount;?>
                                 </div>
                             </div>
@@ -185,10 +188,10 @@ $femaleCount = $genderCount -> rowCount();
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                <div class="text-xs fw-bold text-secondary text-uppercase mb-1">
                                     BHM
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <div class="h5 mb-0 fw-bold text-gray-800">
                                     <?php echo $bhmCount;?>
                                 </div>
                             </div>
@@ -206,10 +209,10 @@ $femaleCount = $genderCount -> rowCount();
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
+                                <div class="text-xs fw-bold text-dark text-uppercase mb-1">
                                     Male
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <div class="h5 mb-0 fw-bold text-gray-800">
                                     <?php echo $maleCount;?>
                                 </div>
                             </div>
@@ -227,10 +230,10 @@ $femaleCount = $genderCount -> rowCount();
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                <div class="text-xs fw-bold text-danger text-uppercase mb-1">
                                     Female
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <div class="h5 mb-0 fw-bold text-gray-800">
                                     <?php echo $femaleCount;?>
                                 </div>
                             </div>
@@ -243,11 +246,12 @@ $femaleCount = $genderCount -> rowCount();
             </div>
 
         </div>
+        <!-- Row Start -->
 
         <!-- DataTables Start -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Students Data</h6>
+                <h6 class="m-0 fw-bold text-primary">Students Data</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -307,7 +311,9 @@ $femaleCount = $genderCount -> rowCount();
         <!-- DataTables End -->
 
     </div>
+    <!-- Container Start -->
 </div>
+<!-- End of Main Content -->
     <?php include 'footer.php';?>
     <!-- Page Level Plugins -->
     <script src="./vendor/datatables/jquery.dataTables.js"></script>
