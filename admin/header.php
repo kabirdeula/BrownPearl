@@ -90,12 +90,12 @@ $activePage = basename($_SERVER["PHP_SELF"],".php");
             <div class="dropdown-menu dropend" aria-labelledby="dropdownMenuOffSet">
                 <div class="bg-white rounded">
                     <h6 class="dropdown-header">Humanities:</h6>
-                    <a class="dropdown-item" href="./bca.php"><i class="fas fa-desktop"></i> BCA</a>
+                    <a class="dropdown-item" href="./bca.php"><i class="fas fa-computer"></i> BCA</a>
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Management:</h6>
                     <a class="dropdown-item" href="./bim.php"><i class="fas fa-laptop"></i> BIM</a>
-                    <a class="dropdown-item" href="./bbm.php"><i class="fas fa-chart-area"></i> BBM</a>
-                    <a class="dropdown-item" href="./bhm.php"><i class="fas fa-cocktail"></i> BHM</a>
+                    <a class="dropdown-item" href="./bbm.php"><i class="fas fa-business-time"></i> BBM</a>
+                    <a class="dropdown-item" href="./bhm.php"><i class="fas fa-hotel"></i> BHM</a>
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Science:</h6>
                     <a class="dropdown-item" href="./bsccsit.php"><i class="fas fa-robot"></i> Bsc CSIT</a>

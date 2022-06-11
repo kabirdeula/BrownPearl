@@ -7540,31 +7540,31 @@ fieldset:disabled .btn {
 }
 
 .border-left-secondary {
-    border-left: 0.25rem solid #858796 !important;
+    border-left: 0.25rem solid #6c757d !important;
 }
 
 .border-left-success {
-    border-left: 0.25rem solid #1cc88a !important;
+    border-left: 0.25rem solid #198754 !important;
 }
 
 .border-left-info {
-    border-left: 0.25rem solid #36b9cc !important;
+    border-left: 0.25rem solid #0dcad0 !important;
 }
 
 .border-left-warning {
-    border-left: 0.25rem solid #f6c23e !important;
+    border-left: 0.25rem solid #ffc107 !important;
 }
 
 .border-left-danger {
-    border-left: 0.25rem solid #e74a3b !important;
+    border-left: 0.25rem solid #dc3545 !important;
 }
 
 .border-left-light {
-    border-left: 0.25rem solid #f8f9fc !important;
+    border-left: 0.25rem solid #f8f9fa !important;
 }
 
 .border-left-dark {
-    border-left: 0.25rem solid #5a5c69 !important;
+    border-left: 0.25rem solid #212529 !important;
 }
 
 .w-25 {

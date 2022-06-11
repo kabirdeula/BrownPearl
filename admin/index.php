@@ -59,7 +59,7 @@ $femaleCount = $genderCount -> rowCount();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="./vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="../vendor/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="../vendor/datatables/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
 </head>
@@ -112,7 +112,7 @@ $femaleCount = $genderCount -> rowCount();
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-desktop fa-2x text-success"></i>
+                                <i class="fas fa-computer fa-2x text-success"></i>
                             </div>
                         </div>
                     </div>
@@ -175,7 +175,7 @@ $femaleCount = $genderCount -> rowCount();
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-chart-area fa-2x text-success"></i>
+                                <i class="fas fa-business-time fa-2x text-success"></i>
                             </div>
                         </div>
                     </div>
@@ -196,7 +196,7 @@ $femaleCount = $genderCount -> rowCount();
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-cocktail fa-2x text-secondary"></i>
+                                <i class="fas fa-hotel fa-2x text-secondary"></i>
                             </div>
                         </div>
                     </div>
@@ -251,7 +251,11 @@ $femaleCount = $genderCount -> rowCount();
         <!-- DataTables Start -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 fw-bold text-primary">Students Data</h6>
+                <h6 class="m-0 fw-bold text-primary">Students Data
+                    <a href="./addStudent.php" class="btn btn-secondary float-end"><i class="fa fa-user-plus"></i> Add New Student</a>
+                </h6>
+                <!-- <a href="#" class="m-0 float-end">Test</a> -->
+                
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -259,7 +263,6 @@ $femaleCount = $genderCount -> rowCount();
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Gender</th>
                                 <th>Mobile</th>
                                 <th>Email</th>
                                 <th>Level</th>
@@ -271,7 +274,6 @@ $femaleCount = $genderCount -> rowCount();
                         <tfoot>
                             <tr>
                                 <th>Name</th>
-                                <th>Gender</th>
                                 <th>Mobile</th>
                                 <th>Email</th>
                                 <th>Level</th>
@@ -287,9 +289,8 @@ $femaleCount = $genderCount -> rowCount();
                             <tr>
                                 <td><?php echo '<a href="./viewStudent.php?RegNo=' . $row["RegNo"] . '" title="View Student"> '?>
                                     <?php echo $row["FirstName"] . ' ' . $row["MiddleName"] . ' ' . $row["LastName"]?>
-                                    <?php echo '</a>'?>
+                                    <?php echo '</a>'?><i class="fa <?php echo ($row["Gender"] == "Male") ? 'fa-mars text-primary' : 'fa-venus text-danger' ;?>"></i>
                                 </td>
-                                <td><?php echo $row["Gender"]?></td>
                                 <td><?php echo $row["Mobile"];?></td>
                                 <td><?php echo $row["Email"];?></td>
                                 <td><?php echo $row["Level"];?></td>
