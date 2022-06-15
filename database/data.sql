@@ -20,3 +20,10 @@ CREATE TABLE State(
     CountryID INT,
     FOREIGN KEY (CountryID) REFERENCES Country(ID)
 );
+
+CREATE TABLE District(
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL,
+    StateID INT,
+    FOREIGN KEY (StateID) REFERENCES State(ID)
+);
