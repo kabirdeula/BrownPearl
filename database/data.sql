@@ -27,3 +27,10 @@ CREATE TABLE District(
     StateID INT,
     FOREIGN KEY (StateID) REFERENCES State(ID)
 );
+
+CREATE TABLE Metro(
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL,
+    DistrictID INT,
+    FOREIGN KEY (DistrictID) REFERENCES District(ID)
+);
